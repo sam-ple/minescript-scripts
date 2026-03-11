@@ -74,11 +74,27 @@ def load_json(path, default):
         return default
 
 
-def format_time(seconds):
-    """秒 → m:ss 表示"""
-    m_, s_ = divmod(seconds, 60)
-    return f"{m_}:{s_:02d}"
+# def format_time(seconds):
+#     """秒 → m:ss 表示"""
+#     m_, s_ = divmod(seconds, 60)
+#     return f"{m_}:{s_:02d}"
 
+# def format_time(seconds):
+#     h = seconds // 3600
+#     m_ = (seconds % 3600) // 60
+#     s_ = seconds % 60
+#     return f"{h}:{m_:02d}:{s_:02d}"
+
+def format_time(seconds):
+    """秒 → h:mm:ss 表示"""
+    h = seconds // 3600
+    m_ = (seconds % 3600) // 60
+    s_ = seconds % 60
+
+    if h > 0:
+        return f"{h}:{m_:02d}:{s_:02d}"
+    else:
+        return f"{m_}:{s_:02d}"
 
 # ===============================
 # GAME START / RESTART
