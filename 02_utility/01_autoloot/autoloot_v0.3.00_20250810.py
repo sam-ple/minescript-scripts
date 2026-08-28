@@ -1,14 +1,5 @@
-"""
-    Attention: This is for programming curiosity only, not to promote cheating.
-
-    Chest Auto Operation with Minescript Plus
-    Version: 
-    Author: Crocado(@sam-ple)
-    Date: 2025-08-10
-
-    Tested on: MC 1.21.8 / MS 5.0b1 / MS+ 0.10a / Fabric
-    Special Thanks: @maxuser / @razrcraft
-"""
+# Fabric 1.21.8 / Minescript 5.0b1 / Minescript Plus v0.10a
+# G: Spawn weighted-loot chest (dict-based loot & hotbar map) → H: Pull & upgrade (skip weak gear) + shield + hotbar layout → J: Remove chest
 import time, math, random
 import minescript as m
 from time import sleep
@@ -82,7 +73,6 @@ MAX_STACK = {
     "minecraft:stone":        64,
     "minecraft:golden_apple": 64,
 }
-
 def _max_stack(item_id: str) -> int:
     return MAX_STACK.get(item_id, 1)
 
@@ -139,7 +129,6 @@ HOTBAR_MAP = {
 # -----------------------------------------
 # G: Spawn a weighted-loot chest 3 blocks ahead (dict-based)
 # -----------------------------------------
-
 def spawn_weighted_loot_chest():
     global _LAST_CHEST_POS
     x, y, z = m.player_position()
@@ -175,7 +164,6 @@ def spawn_weighted_loot_chest():
 # -----------------------------------------
 # J: Remove the last spawned chest (do not touch contents)
 # -----------------------------------------
-
 def remove_last_chest_only():
     global _LAST_CHEST_POS
     if not _LAST_CHEST_POS:
@@ -189,7 +177,6 @@ def remove_last_chest_only():
 # -----------------------------------------
 # H: Pull (skip weak gear) → best armor & best sword → shield → hotbar layout → close
 # -----------------------------------------
-
 def pull_all_from_chest_only_top():
     moved = 0
     try:
@@ -292,7 +279,6 @@ def equip_best_armor_sword_shield():
     return changed, shield_equipped
 
 # --- Hotbar layout via dict (keep sword fixed in slot 0) ---
-
 def _place_item_to_hotbar_exact(item_id: str, hotbar_index: int) -> bool:
     """Move item_id to hotbar.{index} (view slot = 36+index). Returns True on success."""
     items = {st.slot: st for st in (m.container_get_items() or [])}
